@@ -19,6 +19,10 @@ monthly_challenges = {
 # Create your views here.
 def monthly_challenge_by_number(request, month):
     months = list(monthly_challenges.keys()) # Using the fact that keys will be ordered for Python 3.6 and beyond
+
+    if month > len(months) or month < 1:
+        return HttpResponseNotFound('Invalid numbered month!')
+
     redirect_month = months[month - 1] 
     return HttpResponseRedirect(f'/challenges/{redirect_month}')
 
@@ -28,4 +32,4 @@ def monthly_challenge(request, month):
         challenge_text = monthly_challenges[month]
         return HttpResponse(challenge_text)
     except:
-        return HttpResponseNotFound('This month is not supported')
+        return HttpResponseNotFound('This month is not supported!')
