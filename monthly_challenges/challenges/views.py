@@ -22,13 +22,8 @@ def monthly_challenges_by_number(request, month):
 
 
 def monthly_challenge(request, month):
-    challenge_text = None
-    if month == 'january':
-        challenge_text = 'Donate something for good of society. Facts of this month: Month of Makar Shankranti. Uttarayan and kite festival.'
-    elif month == 'february':
-        challenge_text = 'Walk for at least 20 minutes every day!'
-    elif month == 'march':
-        challenge_text = 'Learn Django for at least 20 minutes every day!'
-    else:
-        return HttpResponseNotFound('This month is not supported!')
-    return HttpResponse(challenge_text)
+    try:
+        challenge_text = monthly_challenges[month]
+        return HttpResponse(challenge_text)
+    except:
+        return HttpResponseNotFound('This month is not supported')
