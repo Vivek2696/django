@@ -28,7 +28,8 @@ def index(request):
         month_path = reverse('month-challenge', args=[month])
         list_items += f'<li><a href=\'{month_path}\'>{capitalized_month}</a></li>'
 
-    # list items has all the list of anchor tag: <li><a href"...""></a><li><a href"...""></a>...       
+    # list items has all the list of anchor tag: <li><a href"...""></a><li><a href"...""></a>...
+           
     response_data = f'<ul>{list_items}</ul>'
     return HttpResponse(response_data)
 
